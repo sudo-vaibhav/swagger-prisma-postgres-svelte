@@ -1,0 +1,166 @@
+{
+  "openapi":"3.0.3",
+  "info": {
+    "description": "This is a to-do API server. You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters.",
+    "version": "1.0.0",
+    "title": "To-Dos",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": { "email": "mailvaibhavchopra@gmail.com" },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [{
+    "url":"http://localhost:8000"
+  }],
+  "tags": [
+  ],
+  "paths": {
+    "/ToDos": {
+      "post": {
+        "tags": [],
+        "summary": "Add a new to do to the database",
+        "operationId": "addToDo",
+        "description": "To-do object that needs to be added to the store",
+        "requestBody": {
+          "content": {
+            "application/json" : {
+                "schema": { "$ref": "#/components/requestBodies/ToDoPost" }
+            }
+          }
+        },
+        "responses": { 
+            "405": { 
+                "description": "Invalid input",
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "$ref": "#/components/responses/GeneralErrorResponse"
+                        }
+                    }
+                } 
+            },
+            "201":{
+                "description":"To do created",
+                "content":{
+                    "application/json":{
+                        "schema":
+                        {
+                            "$ref": "#/components/schemas/ToDo"
+                        }
+                    }
+                }
+            }
+        }
+      },
+      "get":{
+          "summary":"Get array of todos from the database",
+          "operationId":"listToDos",
+          "responses":{
+              "200" : {
+                "description": "to-dos successfully returned",
+                "content":{
+                    "application/json" : {
+                        "schema":{
+                          "$ref":"#/components/schemas/ToDos"
+                        }
+                    }
+                }
+              }
+          }
+      }
+    },
+    "/ToDos/{id}":{
+      "delete":{
+        "operationId": "deleteToDo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema":{
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"deleted to-do successfully",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ToDo"
+                }
+              }
+            }
+
+          },
+          "404":{
+            "description": "user error",
+            "content":{
+              "application/json":{
+                  "schema":{
+                    "$ref":"#/components/responses/GeneralErrorResponse"
+                  }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ToDoRequest":{
+        "properties": {
+          "title": {"type":"string","example":"take doge out for walk","minLength": 1},
+          "finished": { "type": "boolean", "example": "true" }
+        },
+        "required": ["title"]
+      },
+      "ToDo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer","example":1 },
+          "title": {"type":"string","example":"take doge out for walk"},
+          "finished": { "type": "boolean", "example": "true" }
+        }
+      },
+      "ToDos":{
+        "type":"array",
+        "items":{
+          "$ref": "#/components/schemas/ToDo"
+        }
+      }
+    },
+    "responses": {
+      "GeneralErrorResponse":{
+        "description": "A generic error, nothing special about it",
+        "content": {
+          "application/json":{
+            "schema":{
+              "properties": {
+                "message":{"type":"string","example":"not found error"},
+                "errors " : {
+                  "type":"array",
+                  "example":["some error occured"],
+                  "items":{
+                    "type": "string"
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "ToDoPost": {
+        "$ref":"#/components/schemas/ToDoRequest"
+      }
+    }
+
+  }
+}
