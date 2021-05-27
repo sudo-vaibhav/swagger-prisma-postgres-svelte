@@ -61,7 +61,7 @@ export default {
 		}),
 		
 		replace({
-			// preventAssignment: true,
+			preventAssignment: true,
 			process: JSON.stringify({
 				env: {
 					ENVIRONMENT: 'dev',

@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import {DefaultApi} from "to_dos"
+	// import {DefaultApi} from "to_dos"
 	import axios from "axios"
 
 	// const client = new DefaultApi()
@@ -11,14 +11,13 @@
 
 	let toDoField = ""
 
-	const client = new DefaultApi()
+	// const client = new DefaultApi()
 	async function fetchToDos (){
-		client.listToDos((error, data, response)=>{
-			console.log("this mah todos:")
-			console.log(error,data,response)
-		})
-		// toDos = await client.listToDos()
-		// await axiosForAPI.get("/ToDos").then(resp=>resp.data)
+		// client.listToDos((error, data, response)=>{
+		// 	console.log("this mah todos:")
+		// 	console.log(error,data,response)
+		// })
+		toDos = await axiosForAPI.get("/ToDos").then(resp=>resp.data)
 	}
 
 	async function handleSubmit(e){
