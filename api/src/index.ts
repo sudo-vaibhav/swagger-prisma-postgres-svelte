@@ -42,7 +42,6 @@ app.post("/ToDos", async (req, res) => {
     const todo = await prisma.toDo.create({
         data: req.body
     })
-
     return res.status(201).send(todo)
 })
 

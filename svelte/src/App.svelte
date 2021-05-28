@@ -1,24 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
-	import {DefaultApi} from "../gen/api";
+	import {DefaultApi} from "../gen/api"; // generated sdk
 
 	import axios from "axios"
 	const axiosForAPI = axios.create()
-	axiosForAPI.interceptors.response.use(
-		response=>response.data,
-		error => Promise.reject(error)
-	)
-	const client = new DefaultApi(undefined,
-	// "https://swagger-prisma-postgres-svelte.azurewebsites.net"
-	"http://localhost:8000"
-	,axiosForAPI)
-
+	const client = new DefaultApi(undefined,"http://localhost:8000",axiosForAPI)
+	
 	let toDos = []
 	let toDoField = ""
 
 
 	async function fetchToDos (){
-		toDos = await client.listToDos()
+		toDos = (await client.listToDos()).data
 	}
 
 	async function handleSubmit(e){
@@ -33,7 +26,8 @@
 	}
 
 	async function handleDelete(id){
-		await client.deleteToDo(id)
+		const result = (await client.deleteToDo(id)).data
+		console.log(result)
 		fetchToDos()
 	}
 

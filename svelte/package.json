@@ -6,7 +6,7 @@
     "build": "ENVIRONMENT=prod rollup -c",
     "dev": "ENVIRONMENT=dev rollup -c -w",
     "start": "sirv public --no-clear",
-    "codegen": "rm -rf gen/api && swagger-codegen generate -i  ../api/openapi.json -l typescript-axios -o gen/api --config api.json && cd gen/api && npm install",
+    "codegen": "rm -rf gen/api && swagger-codegen generate -i  ../api/src/openapi.json -l typescript-axios -o gen/api --config api.json && cd gen/api && npm install",
     "client-build":"cd gen/api && npm run build"
   },
   "devDependencies": {
