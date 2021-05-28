@@ -107,6 +107,54 @@
             }
           }
         }
+      },
+      "patch":{
+        "operationId": "updateToDo",
+        "requestBody": {
+          "content": {
+            "application/json" : {
+                "schema": { 
+                  "properties": {
+                    "title": {"type":"string","example":"take doge out for walk","minLength": 1},
+                    "finished": { "type": "boolean", "example": "true" }
+                  }
+                }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema":{
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description":"updated to-do successfully",
+            "content": {
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ToDo"
+                }
+              }
+            }
+
+          },
+          "404":{
+            "description": "user error",
+            "content":{
+              "application/json":{
+                  "schema":{
+                    "$ref":"#/components/responses/GeneralErrorResponse"
+                  }
+              }
+            }
+          }
+        }
       }
     }
   },
