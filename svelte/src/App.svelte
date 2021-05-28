@@ -34,9 +34,18 @@
 		fetchToDos()
 	}
 
+	async function handleChange(e,id,title){
+		console.log(e.target.checked,id,title)
+		await client.updateToDo(id,{
+			title,
+			finished: e.target.checked
+		})
+		fetchToDos()
+	}
 	onMount(()=>{
 		fetchToDos()
 	})
+
 
 </script>
 
@@ -62,7 +71,7 @@
 				{title}
 			</div>
 			<div>
-				<input type="checkbox" checked={finished}/>
+				<input type="checkbox" checked={finished} on:change={(e)=>handleChange(e,id,title)}/>
 				<button class="btn" on:click={()=>handleDelete(id)}>
 					🗑️
 				</button>

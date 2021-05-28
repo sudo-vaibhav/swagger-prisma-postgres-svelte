@@ -11,11 +11,22 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { ToDo} from "./to-do"
 /**
  * 
  * @export
- * @interface ToDos
+ * @interface Body
  */
-export interface ToDos extends Array<ToDo> {
+export interface Body {
+    /**
+     * 
+     * @type {string}
+     * @memberof Body
+     */
+    title?: any;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Body
+     */
+    finished?: any;
 }
