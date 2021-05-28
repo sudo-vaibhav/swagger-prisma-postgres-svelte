@@ -1,41 +1,43 @@
 <script>
 	import { onMount } from 'svelte';
-	// import {DefaultApi} from "to_dos"
+	import {DefaultApi} from "../gen/api";
+
 	import axios from "axios"
+	const axiosForAPI = axios.create()
+	axiosForAPI.interceptors.response.use(
+		response=>response.data,
+		error => Promise.reject(error)
+	)
+	const client = new DefaultApi(undefined,"http://localhost:8000",axiosForAPI)
 
-	// const client = new DefaultApi()
-	const axiosForAPI = axios.create({
-		baseURL: process.env.ENVIRONMENT==="dev" ? "http://localhost:8000/" : "http://localhost:7000/"
-	})
 	let toDos = []
-
 	let toDoField = ""
 
-	// const client = new DefaultApi()
+
 	async function fetchToDos (){
-		// client.listToDos((error, data, response)=>{
-		// 	console.log("this mah todos:")
-		// 	console.log(error,data,response)
-		// })
-		toDos = await axiosForAPI.get("/ToDos").then(resp=>resp.data)
+		toDos = await client.listToDos()
 	}
 
 	async function handleSubmit(e){
 		e.preventDefault()
-		await axiosForAPI.post("/ToDos",{
-			title : toDoField
+		await client.addToDo({
+			data:
+			{
+				title:toDoField
+			}
 		})
 		fetchToDos()
 	}
 
 	async function handleDelete(id){
-		await axiosForAPI.delete("/ToDos/"+id)
+		await client.deleteToDo(id)
 		fetchToDos()
 	}
 
 	onMount(()=>{
 		fetchToDos()
 	})
+
 </script>
 
 <main class="container w-75 mx-auto">

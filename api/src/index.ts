@@ -55,6 +55,16 @@ app.delete("/ToDos/:id", async (req, res) => {
     return res.send(toDo)
 })
 
+app.patch("/ToDos/:id", async (req, res) => {
+    const toDo = await prisma.toDo.update({
+        where: {
+            id: parseInt(req.params.id)
+        },
+        data: req.body
+    })
+
+    return res.send(toDo)
+})
 
 app.use((err: ErrorRequestHandler & {
     status: number,
