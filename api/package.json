@@ -1,8 +1,11 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "a sample to do app made using svelte, prisma, postgres and open api",
   "main": "dist/index.js",
+  "repository": {
+    "url": "https://github.com/sudo-vaibhav/swagger-prisma-postgres-svelte.git"
+  },
   "scripts": {
     "start":"node .",
     "ts-start": "ts-node src/index.ts",
