@@ -5,9 +5,13 @@
 	import axios from "axios"
 	const axiosForAPI = axios.create()
 	const client = new DefaultApi(undefined,"http://localhost:8000",axiosForAPI)
-	
-	let toDos = []
 	let toDoField = ""
+	let toDos = []
+
+	onMount(()=>{
+		fetchToDos()
+	})
+
 
 
 	async function fetchToDos (){
@@ -39,10 +43,7 @@
 		})
 		fetchToDos()
 	}
-	onMount(()=>{
-		fetchToDos()
-	})
-
+	
 
 </script>
 
@@ -76,7 +77,7 @@
 
 		</li>
 		{:else}
-		Loading To-Dos...
+			Loading To-Dos...
 		{/each}
 	</ul>
 </main>

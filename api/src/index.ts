@@ -48,7 +48,7 @@ app.post("/ToDos", async (req, res) => {
 app.delete("/ToDos/:id", async (req, res) => {
     const toDo = await prisma.toDo.delete({
         where: {
-        id: parseInt(req.params.id)
+            id: parseInt(req.params.id)
         }
     })
     return res.send(toDo)
