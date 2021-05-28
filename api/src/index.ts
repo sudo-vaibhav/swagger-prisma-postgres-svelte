@@ -11,8 +11,8 @@ app.use(cors())
 
 import * as OpenApiValidator from 'express-openapi-validator';
 
-const openApiDocPath = "../openapi.json"
-import swaggerDocument from "../openapi.json";
+const openApiDocPath = "./openapi.json"
+import swaggerDocument from "./openapi.json";
 
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

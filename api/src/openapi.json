@@ -11,9 +11,16 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "servers": [{
-    "url":"http://localhost:8000"
-  }],
+  "servers": [
+    {
+      "url" : "https://swagger-prisma-postgres-svelte.azurewebsites.net/",
+      "description": "production server"
+    },
+  {
+    "url":"http://localhost:8000",
+    "description":"the dev server"
+  }
+],
   "tags": [
   ],
   "paths": {

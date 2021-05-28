@@ -8,7 +8,10 @@
 		response=>response.data,
 		error => Promise.reject(error)
 	)
-	const client = new DefaultApi(undefined,"http://localhost:8000",axiosForAPI)
+	const client = new DefaultApi(undefined,
+	// "https://swagger-prisma-postgres-svelte.azurewebsites.net"
+	"http://localhost:8000"
+	,axiosForAPI)
 
 	let toDos = []
 	let toDoField = ""
