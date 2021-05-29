@@ -16,7 +16,7 @@ import { Configuration } from "./configuration";
 // @ts-ignore
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 
-export const BASE_PATH = "https://swagger-prisma-postgres-svelte.azurewebsites.net".replace(/\/+$/, "");
+export const BASE_PATH = "https://swagger-prisma-svelte-postgres-todos.azurewebsites.net".replace(/\/+$/, "");
 
 /**
  *

@@ -4,7 +4,7 @@
 
 	import axios from "axios"
 	const axiosForAPI = axios.create()
-	const client = new DefaultApi(undefined,"http://localhost:8000",axiosForAPI)
+	const client = new DefaultApi(undefined,"https://swagger-prisma-svelte-postgres-todos.azurewebsites.net",axiosForAPI)
 	let toDoField = ""
 	let toDos = []
 

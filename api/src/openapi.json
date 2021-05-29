@@ -13,12 +13,12 @@
   },
   "servers": [
     {
-      "url" : "https://swagger-prisma-postgres-svelte.azurewebsites.net",
-      "description": "production server"
+      "url" : "https://swagger-prisma-svelte-postgres-todos.azurewebsites.net",
+      "description": "prod server"
     },
   {
     "url":"http://localhost:8000",
-    "description":"the dev server"
+    "description":"dev server"
   }
 ],
   "tags": [

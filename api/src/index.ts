@@ -70,9 +70,11 @@ app.use((err: ErrorRequestHandler & {
     message: string,
     errors : []
 }, req:Request, res:Response, next:NextFunction) => {
+    console.log("error: ",err)
     let status = err.status || 500;
     let errors : String[] =  err.errors || []
     let message = err.message || "some error occured"
+
     if (err.message?.toLowerCase().includes("not found")) {
         status = 404
         message = "resource not found"
